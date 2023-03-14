@@ -2,22 +2,23 @@ import logo from "@/assets/logo.png";
 import Link from "./Link";
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import { useEffect, useRef, useState } from "react";
 import ActionButton from "@/shared/ActionButton";
 import MenuMobile from "./Menu";
 
 type Props = {
+  isTopOfPage: boolean;
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
+const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
   const flex = "flex justify-between items-center";
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
+  const navbarBackground = isTopOfPage ? "" : "bg-primary-100 drop-shadow";
 
   return (
     <nav>
-      <div className={`${flex} fixed top-0 z-30 w-full py-5`}>
+      <div className={`${navbarBackground}${flex} fixed top-0 z-30 w-full py-5`}>
         <div className={`${flex} mx-auto w-5/6 `}>
           <div className={`${flex} w-full gap-16`}>
             {/* left side */}
